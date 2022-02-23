@@ -38,25 +38,25 @@ AlertTarget checkAndAlert(
 	  
  }
  
-AlertTarget  printAlert(char* alertInfo, AlertTarget target)
+void  printAlert(char* alertInfo, AlertTarget target)
  {
      puts(alertInfo);
-     return target;
+   
  }
 
 
-AlertTarget sendToController(BreachType breachType) 
+void sendToController(BreachType breachType) 
 {    	 const unsigned short header = 0xfeed;
 	 char alertInfo[100];
 	 sprintf(alertInfo ,"%x : %x\n", header, breachType);
-	  return printAlert(alertInfo, TO_CONTROLLER );
+	 
 	 
 }
 
-AlertTarget sendToEmail(BreachType breachType) {
+void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   char alertInfo[100];
   sprintf(alertInfo, "To: %s\n Hi,The Temperature is %s \n", recepient ,Breachinfo[breachType] );
-  return printAlert(alertInfo, TO_EMAIL );;
+
 }
 
