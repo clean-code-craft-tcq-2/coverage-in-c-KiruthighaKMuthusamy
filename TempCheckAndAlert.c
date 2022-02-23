@@ -6,7 +6,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit)
   BreachType lowerBreachResult = checkLowerLimit( value,  lowerLimit);
   BreachType upperBreachResult = checkUpperLimit( value,  upperLimit);
   
-  return lowerBreachResult + upperBreachResult;
+  return (BreachType)((int)lowerBreachResult + (int)upperBreachResult);
  
 }
 
@@ -34,30 +34,29 @@ AlertTarget checkAndAlert(
 		batteryChar.coolingType, temperatureInC
 	  );
 
-	 AlertTarget targetResponse =  (*alertAction[alertTarget])(breachType);
+	 return  (*alertAction[alertTarget])(breachType);
 	  
  }
  
-AlertTarget  printAlert(char* alertInfo, AlertTarget target)
+void  printAlert(char* alertInfo, AlertTarget target)
  {
      puts(alertInfo);
-     return target;
+   
  }
 
 
-AlertTarget sendToController(BreachType breachType) 
-{     AlertTarget targetResponse;
-	 const unsigned short header = 0xfeed;
+void sendToController(BreachType breachType) 
+{    	 const unsigned short header = 0xfeed;
 	 char alertInfo[100];
 	 sprintf(alertInfo ,"%x : %x\n", header, breachType);
-	  return printAlert(alertInfo, TO_CONTROLLER );
+	 
 	 
 }
 
-AlertTarget sendToEmail(BreachType breachType) {
+void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   char alertInfo[100];
   sprintf(alertInfo, "To: %s\n Hi,The Temperature is %s \n", recepient ,Breachinfo[breachType] );
-  return printAlert(alertInfo, TO_EMAIL );;
+
 }
 

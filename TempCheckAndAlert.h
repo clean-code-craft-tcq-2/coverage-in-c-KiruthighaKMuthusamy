@@ -9,14 +9,14 @@ typedef enum {
 typedef enum {
   NORMAL,
   TOO_LOW,
-  TOO_HIGH
-  _BREACH_TYPE_LENGTH
+  TOO_HIGH,
+  BREACH_TYPE_LENGTH
 } BreachType;
 
 typedef enum {
   TO_CONTROLLER,
   TO_EMAIL,
-  _ALERT_TARGET_LENGTH
+  ALERT_TARGET_LENGTH
 } AlertTarget;
 
 typedef struct {
@@ -24,7 +24,9 @@ typedef struct {
   char brand[48];
 } BatteryCharacter;
 
-const char Breachinfo[_BREACH_TYPE_LENGTH][10] = {"Normal","Too Low","Too High"};
+const char Breachinfo[BREACH_TYPE_LENGTH][10] = {"Normal","Too Low","Too High"};
+
+typedef AlertTarget (*actionList) (BreachType breachType);
 
 int  passiveCoolingUpperLimit(CoolingType coolingType, int upperLimit);
 int  passiveCoolingLowerLimit(CoolingType coolingType, int lowerLimit);
@@ -34,11 +36,11 @@ int  medActiveCoolingUpperLimit(CoolingType coolingType, int upperLimit);
 int  medActiveCoolingLowerLimit(CoolingType coolingType, int lowerLimit);
 BreachType checkLowerLimit(double value, double lowerLimit);
 BreachType checkUpperLimit(double value, double upperLimit);
-BreachType inferBreach(double value, double lowerLimit, double upperLimit)
+BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
 AlertTarget checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC, actionList *alertAction ); 
 AlertTarget sendToController(BreachType breachType);
 AlertTarget sendToEmail(BreachType breachType);
+AlertTarget  printAlert(char* alertInfo, AlertTarget target);
 
-typedef AlertTarget (*actionList) (BreachType breachType);
-actionList fpArrayOfActions[_ALERT_TARGET_LENGTH];
+
