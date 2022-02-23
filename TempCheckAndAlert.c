@@ -6,7 +6,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit)
   BreachType lowerBreachResult = checkLowerLimit( value,  lowerLimit);
   BreachType upperBreachResult = checkUpperLimit( value,  upperLimit);
   
-  return lowerBreachResult + upperBreachResult;
+  return (BreachType)((int)lowerBreachResult + (int)upperBreachResult);
  
 }
 
@@ -46,8 +46,7 @@ AlertTarget  printAlert(char* alertInfo, AlertTarget target)
 
 
 AlertTarget sendToController(BreachType breachType) 
-{     AlertTarget targetResponse;
-	 const unsigned short header = 0xfeed;
+{    	 const unsigned short header = 0xfeed;
 	 char alertInfo[100];
 	 sprintf(alertInfo ,"%x : %x\n", header, breachType);
 	  return printAlert(alertInfo, TO_CONTROLLER );
