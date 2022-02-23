@@ -27,7 +27,6 @@ typedef struct {
 const char Breachinfo[BREACH_TYPE_LENGTH][10] = {"Normal","Too Low","Too High"};
 
 typedef AlertTarget (*actionList) (BreachType breachType);
-actionList fpArrayOfActions[ALERT_TARGET_LENGTH];
 
 int  passiveCoolingUpperLimit(CoolingType coolingType, int upperLimit);
 int  passiveCoolingLowerLimit(CoolingType coolingType, int lowerLimit);
