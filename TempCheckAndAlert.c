@@ -34,7 +34,7 @@ AlertTarget checkAndAlert(
 		batteryChar.coolingType, temperatureInC
 	  );
 
-	 AlertTarget targetResponse =  (*alertAction[alertTarget])(breachType);
+	 return  (*alertAction[alertTarget])(breachType);
 	  
  }
  
