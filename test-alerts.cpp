@@ -3,7 +3,7 @@
 #include "test/catch.hpp"
 #include "TempCheckAndAlert.h"
 
-actionList fpArrayOfActions[_LENGTH] = {sendToController,sendToEmail};
+actionList fpArrayOfActions[ALERT_TARGET_LENGTH] = {sendToController,sendToEmail};
 
 
 
@@ -64,6 +64,7 @@ TEST_CASE("Check the Higher limit breach for a value") {
   REQUIRE(checkLowerLimit(50, 45) == TOO_HIGH);
     
 }
+
 TEST_CASE("infers the breach according to limits") {
   REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
   REQUIRE(inferBreach(22, 20, 30) == NORMAL);
@@ -84,8 +85,11 @@ TEST_CASE("Given Temperature is classified based on the Breach limits")
 TEST_CASE("Checks for temperature Breach and alert")
 
 {
-  REQUIRE(checkAndAlert(TO_CONTROLLER,PASSIVE_COOLING, 41,fpArrayOfActions) == TOO_HIGH);
-  REQUIRE(checkAndAlert(TO_EMAIL,HI_ACTIVE_COOLING, 15,fpArrayOfActions) == TOO_HIGH);
+	
+	BatteryCharacter batteryChar1 = {PASSIVE_COOLING,"Nothing"};
+  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar, 41,fpArrayOfActions) == TOO_HIGH);
+   BatteryCharacter batteryChar2 = {HI_ACTIVE_COOLING,"Nothing"};
+  REQUIRE(checkAndAlert(TO_EMAIL,batteryChar2, 15,fpArrayOfActions) == TOO_HIGH);
     
   
 }
@@ -93,25 +97,19 @@ TEST_CASE("Checks for temperature Breach and alert")
 TEST_CASE("Prints the given string and returns the function caller ID")
 {
   REQUIRE(printAlert("To: @kiruthi \n The temperature is Too Low",TO_CONTROLLER) == TO_CONTROLLER);
-  
-  
 }
 
 
 TEST_CASE("Sending the Breach information to Controller")
 {
   REQUIRE(sendToController(TOO_HIGH) == TO_CONTROLLER);
-  
-  
+   
 }
-
-
 
 TEST_CASE("Sending the Breach information to EMAIL")
 {
   REQUIRE(sendToEmail(TOO_HIGH) == TO_EMAIL);
-  
-  
+    
 }
 
 
