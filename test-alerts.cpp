@@ -104,7 +104,7 @@ const char* str = "To: @kiruthi \n The temperature is Too Low";
 TEST_CASE("Sending the Breach information to Controller")
 {
   REQUIRE(sendToController(TOO_HIGH) == TO_CONTROLLER);
-  
+    REQUIRE(sendToController(NORMAL) == TO_CONTROLLER);
   
 }
 
@@ -113,7 +113,7 @@ TEST_CASE("Sending the Breach information to Controller")
 TEST_CASE("Sending the Breach information to EMAIL")
 {
   REQUIRE(sendToEmail(TOO_HIGH) == TO_EMAIL);
-  
+  REQUIRE(sendToEmail(TOO_LOW) == TO_EMAIL);
   
 }
 
