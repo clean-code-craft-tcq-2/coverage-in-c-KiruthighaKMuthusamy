@@ -23,7 +23,7 @@ int  hiActiveCoolingUpperLimit(CoolingType coolingType, int upperLimit)
 {
 	if (coolingType  == HI_ACTIVE_COOLING)
 	{
-		return 40;
+		return 45;
 	}
 	return upperLimit;
 }
@@ -40,7 +40,7 @@ int  medActiveCoolingUpperLimit(CoolingType coolingType, int upperLimit)
 {
 	if (coolingType  == MED_ACTIVE_COOLING)
 	{
-		return 45;
+		return 40;
 	}
 	return upperLimit;
 }
