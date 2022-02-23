@@ -37,7 +37,7 @@ int  medActiveCoolingUpperLimit(CoolingType coolingType, int upperLimit);
 int  medActiveCoolingLowerLimit(CoolingType coolingType, int lowerLimit);
 BreachType checkLowerLimit(double value, double lowerLimit);
 BreachType checkUpperLimit(double value, double upperLimit);
-BreachType inferBreach(double value, double lowerLimit, double upperLimit)
+BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
 AlertTarget checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC, actionList *alertAction ); 
 AlertTarget sendToController(BreachType breachType);
