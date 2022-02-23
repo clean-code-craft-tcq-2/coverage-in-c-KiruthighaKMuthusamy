@@ -32,23 +32,23 @@ TEST_CASE("Extracts High Active cooling Upper limit") {
 
 TEST_CASE("Extracts High Active cooling Lowet limit") {
   REQUIRE(hiActiveCoolingLowerLimit(PASSIVE_COOLING, 12) == 12);
-  REQUIRE(hiActiveCoolingLowerLimit(HI_ACTIVE_COOLING, 44) == 44);
-  REQUIRE(hiActiveCoolingLowerLimit(MED_ACTIVE_COOLING, 4) == 40);
+  REQUIRE(hiActiveCoolingLowerLimit(HI_ACTIVE_COOLING, 44) == 0);
+  REQUIRE(hiActiveCoolingLowerLimit(MED_ACTIVE_COOLING, 4) == 4);
   
 }
 
 TEST_CASE("Extracts Medium Active cooling Upper limit") {
-  REQUIRE(medActiveCoolingUpperLimit(PASSIVE_COOLING, 12) == 35);
+  REQUIRE(medActiveCoolingUpperLimit(PASSIVE_COOLING, 12) == 12);
   REQUIRE(medActiveCoolingUpperLimit(HI_ACTIVE_COOLING, 12) == 12);
-  REQUIRE(medActiveCoolingUpperLimit(MED_ACTIVE_COOLING, 0) == 0);
+  REQUIRE(medActiveCoolingUpperLimit(MED_ACTIVE_COOLING, 10) == 40);
   
 }
 
 
 TEST_CASE("Extracts Medium Active cooling Lowet limit") {
-  REQUIRE(medActiveCoolingLowerLimit(PASSIVE_COOLING, 12) == 0);
+  REQUIRE(medActiveCoolingLowerLimit(PASSIVE_COOLING, 40) == 40);
   REQUIRE(medActiveCoolingLowerLimit(HI_ACTIVE_COOLING, 12) == 12);
-  REQUIRE(medActiveCoolingLowerLimit(MED_ACTIVE_COOLING, 14) == 14);
+  REQUIRE(medActiveCoolingLowerLimit(MED_ACTIVE_COOLING, 14) == 0);
   
 }
 
@@ -78,6 +78,7 @@ TEST_CASE("Given Temperature is classified based on the Breach limits")
   REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 12) == NORMAL);
   REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, -1) == TOO_LOW);
   
+  
 }
 
 TEST_CASE("Checks for temperature Breach and alert")
@@ -95,19 +96,26 @@ TEST_CASE("Prints the given string and returns the function caller ID")
 {
 const char* str = "To: @kiruthi \n The temperature is Too Low";
   REQUIRE(printAlert("To: @kiruthi \n The temperature is Too Low",TO_CONTROLLER) == TO_CONTROLLER);
- 
+  
+  
 }
 
 
 TEST_CASE("Sending the Breach information to Controller")
 {
   REQUIRE(sendToController(TOO_HIGH) == TO_CONTROLLER);
- 
+  
+  
 }
+
+
 
 TEST_CASE("Sending the Breach information to EMAIL")
 {
   REQUIRE(sendToEmail(TOO_HIGH) == TO_EMAIL);
+  
+  
 }
+
 
 
