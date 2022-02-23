@@ -42,5 +42,6 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
 AlertTarget checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC, actionList *alertAction ); 
 AlertTarget sendToController(BreachType breachType);
 AlertTarget sendToEmail(BreachType breachType);
+AlertTarget  printAlert(char* alertInfo, AlertTarget target);
 
 
