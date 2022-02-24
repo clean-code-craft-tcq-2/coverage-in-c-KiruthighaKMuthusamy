@@ -48,7 +48,7 @@ AlertTarget  printAlert(char* alertInfo, AlertTarget target)
 AlertTarget sendToController(BreachType breachType) 
 {    	 const unsigned short header = 0xfeed;
 	 char alertInfo[100];
-	 sprintf(alertInfo ,"%x : %x\n", header, breachType);
+	// sprintf(alertInfo ,"%x : %x\n", header, breachType);
 	  return printAlert(alertInfo, TO_CONTROLLER );
 	 
 }
@@ -56,7 +56,7 @@ AlertTarget sendToController(BreachType breachType)
 AlertTarget sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   char alertInfo[100];
-  sprintf(alertInfo, "To: %s\n Hi,The Temperature is %s \n", recepient ,Breachinfo[breachType] );
+  //sprintf(alertInfo, "To: %s\n Hi,The Temperature is %s \n", recepient ,Breachinfo[breachType] );
   return printAlert(alertInfo, TO_EMAIL );;
 }
 
