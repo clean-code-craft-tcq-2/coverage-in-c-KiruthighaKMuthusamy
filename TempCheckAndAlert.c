@@ -54,10 +54,14 @@ AlertTarget sendToController(BreachType breachType)
 }
 
 AlertTarget sendToEmail(BreachType breachType) {
+	AlertTarget target = TO_EMAIL;
+if(breachType != NORMAL)
+{
   const char* recepient = "a.b@c.com";
   char alertInfo[100];
   sprintf(alertInfo, "To: %s\n Hi,The Temperature is %s \n", recepient ,Breachinfo[breachType] );
-   AlertTarget result = printAlert(alertInfo, TO_EMAIL );;
-	return result;
+  return printAlert(alertInfo, TO_EMAIL );
+}
+	return target;
 }
 
