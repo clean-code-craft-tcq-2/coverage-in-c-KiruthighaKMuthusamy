@@ -106,9 +106,9 @@ TEST_CASE("Sending the Breach information to Controller")
 
 TEST_CASE("Sending the Breach information to EMAIL")
 {
-  REQUIRE(sendToEmail(TOO_HIGH) == TO_EMAIL);
+  
   REQUIRE(sendToEmail(TOO_LOW) == TO_EMAIL);
-  REQUIRE(sendToEmail(NORAML) == TO_EMAIL);
+  REQUIRE(sendToEmail(NORMAL) == TO_EMAIL);
 }
 
 
