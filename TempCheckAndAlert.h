@@ -38,9 +38,9 @@ BreachType checkLowerLimit(double value, double lowerLimit);
 BreachType checkUpperLimit(double value, double upperLimit);
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
-void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC, actionList *alertAction ); 
-void sendToController(BreachType breachType);
-void sendToEmail(BreachType breachType);
-void  printAlert(char* alertInfo, AlertTarget target);
+AlertTarget checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC, actionList *alertAction ); 
+AlertTarget sendToController(BreachType breachType);
+AlertTarget sendToEmail(BreachType breachType);
+AlertTarget  printAlert(char* alertInfo, AlertTarget target);
 
 
