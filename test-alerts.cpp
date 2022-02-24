@@ -84,11 +84,15 @@ TEST_CASE("Checks for temperature Breach and alert")
 
 {
 	
-	BatteryCharacter batteryChar1 = {PASSIVE_COOLING,"Nothing"};
-  REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar1, 41,fpArrayOfActions) == TO_CONTROLLER);
-   BatteryCharacter batteryChar2 = {HI_ACTIVE_COOLING,"Nothing"};
-  REQUIRE(checkAndAlert(TO_EMAIL,batteryChar2, 15,fpArrayOfActions) == TO_EMAIL);
-   
+ BatteryCharacter batteryChar1 = {PASSIVE_COOLING,"Nothing"};
+ REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar1, 41,fpArrayOfActions) == TO_CONTROLLER);
+ BatteryCharacter batteryChar2 = {HI_ACTIVE_COOLING,"Nothing"};
+ REQUIRE(checkAndAlert(TO_EMAIL,batteryChar2, 15,fpArrayOfActions) == TO_EMAIL);
+ BatteryCharacter batteryChar3 = {MED_ACTIVE_COOLING,"Nothing"};
+ REQUIRE(checkAndAlert(TO_CONTROLLER,batteryChar3, 41,fpArrayOfActions) == TO_CONTROLLER);
+ BatteryCharacter batteryChar4 = {HI_ACTIVE_COOLING,"Nothing"};
+ REQUIRE(checkAndAlert(TO_EMAIL,batteryChar4, -1,fpArrayOfActions) == TO_EMAIL);
+	
 }
 
 TEST_CASE("Prints the given string and returns the function caller ID")
